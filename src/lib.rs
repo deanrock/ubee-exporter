@@ -36,9 +36,7 @@ enum Direction {
 }
 
 pub fn exporter(server_host: String, server_port: u16, modem_host: String) {
-    let binding = format!("{}:{}", server_host, server_port)
-        .parse()
-        .unwrap();
+    let binding = format!("{}:{}", server_host, server_port).parse().unwrap();
     let exporter = prometheus_exporter::start(binding).unwrap();
 
     let target_url = format!("http://{}/UbeeConnection.asp", modem_host);
@@ -166,7 +164,6 @@ pub fn exporter(server_host: String, server_port: u16, modem_host: String) {
         drop(guard);
     }
 }
-
 
 fn parse_html(html: String) -> ChannelData {
     let document = Html::parse_document(html.as_str());
