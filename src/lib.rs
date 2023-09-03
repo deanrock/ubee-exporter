@@ -193,7 +193,10 @@ fn parse_html(html: String) -> ChannelData {
                 .expect("second row should be present and contain field labels");
 
             for tr in trs {
-                let tds: Vec<String> = tr.select(&td).map(|item| item.inner_html().trim().to_string()).collect();
+                let tds: Vec<String> = tr
+                    .select(&td)
+                    .map(|item| item.inner_html().trim().to_string())
+                    .collect();
 
                 if let Some(Direction::Downstream) = m {
                     assert!(tds.len() == 9, "downstream row should have 9 fields");
