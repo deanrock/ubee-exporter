@@ -193,7 +193,7 @@ fn parse_html(html: String) -> ChannelData {
                 .expect("second row should be present and contain field labels");
 
             for tr in trs {
-                let tds: Vec<String> = tr.select(&td).map(|item| item.inner_html()).collect();
+                let tds: Vec<String> = tr.select(&td).map(|item| item.inner_html().trim().to_string()).collect();
 
                 if let Some(Direction::Downstream) = m {
                     assert!(tds.len() == 9, "downstream row should have 9 fields");
@@ -259,14 +259,14 @@ mod tests {
         <table style="font-family: Helvetica;font-size:14">
             <tr bgcolor=#CE0000><th colspan=9><b><label id="ID_LABEL_TABLE_DOWNSTREAM">Downstream Bonded Channels</label></b></th></tr>
             <tr bgcolor="#FF8C00"><td><label id="ID_LABEL_TABLE_DOWNSTREAM_CHANNEL">Channel</label></td><td><label id="ID_LABEL_TABLE_DOWNSTREAM_LOCK_STATUS">Lock Status</label></td><td><label id="ID_LABEL_TABLE_DOWNSTREAM_MODULATION">Modulation</label></td><td><label id="ID_LABEL_TABLE_DOWNSTREAM_FREQUENCY">Frequency</label></td><td><label id="ID_LABEL_TABLE_DOWNSTREAM_POWER">Power</label></td><td><label id="ID_LABEL_TABLE_DOWNSTREAM_SNR">SNR</label></td><td><label id="ID_LABEL_TABLE_DOWNSTREAM_SYMBOL_RATE">Symbol Rate</label></td><td><label id="ID_LABEL_TABLE_DOWNSTREAM_CORRECTABLE">Correctables</label></td><td><label id="ID_LABEL_TABLE_DOWNSTREAM_UNCORRECTABLE">Uncorrectables</label></td></tr>
-            <tr bgcolor="#9999CC"><td>1</td><td>Locked</td><td>QAM256</td><td>100000000 Hz</td><td>-1.0 dBmV</td><td>40.5 dB</td><td>1000 Ksym/sec</td><td>1</td><td>3</td></tr>
+            <tr bgcolor="#9999CC"><td> 1</td><td> Locked</td><td> QAM256</td><td> 100000000 Hz</td><td> -1.0 dBmV</td><td> 40.5 dB</td><td> 1000 Ksym/sec</td><td>1</td><td>3</td></tr>
             <tr bgcolor="#99CCFF"><td>2</td><td>Locked</td><td>QAM256</td><td>200000000 Hz</td><td>-0.5 dBmV</td><td>40.0 dB</td><td>2000 Ksym/sec</td><td>2</td><td>2</td></tr>
             <tr bgcolor="#9999CC"><td>3</td><td>Locked</td><td>QAM256</td><td>300000000 Hz</td><td>-0.1 dBmV</td><td>41.6 dB</td><td>3000 Ksym/sec</td><td>3</td><td>1</td></tr>
         </table>
         <table style="font-family: Helvetica;font-size:14">
             <tr bgcolor=#CE0000><th colspan=7><b><label id="ID_LABEL_TABLE_UPSTREAM">Upstream Bonded Channels</label></b></th></tr>
             <tr bgcolor="#FF8C00"><td><label id="ID_LABEL_TABLE_UPSTREAM_CHANNEL">Channel</label></td><td><label id="ID_LABEL_TABLE_UPSTREAM_LOCK_STATUS">Lock Status</label></td><td><label id="ID_LABEL_TABLE_UPSTREAM_CHANNEL_TYPE">US Channel Type</label></td><td><label id="ID_LABEL_TABLE_UPSTREAM_SYMBOL_RATE">Symbol Rate</label></td><td><label id="ID_LABEL_TABLE_UPSTREAM_FREQUENCY">Frequency</label></td><td><label id="ID_LABEL_TABLE_UPSTREAM_POWER">Power</label></td></tr>
-            <tr bgcolor="#9999CC"><td>1</td><td>Locked</td><td>ATDMA</td><td>1000 Ksym/sec</td><td>50000000 Hz</td><td>35.0 dBmV</td></tr>
+            <tr bgcolor="#9999CC"><td> 1</td><td> Locked</td><td> ATDMA</td><td> 1000 Ksym/sec</td><td> 50000000 Hz</td><td> 35.0 dBmV</td></tr>
             <tr bgcolor="#99CCFF"><td>2</td><td>Locked</td><td>ATDMA</td><td>2000 Ksym/sec</td><td>60000000 Hz</td><td>35.5 dBmV</td></tr>
             <tr bgcolor="#9999CC"><td>3</td><td>Locked</td><td>ATDMA</td><td>3000 Ksym/sec</td><td>70000000 Hz</td><td>35.8 dBmV</td></tr>
         </table>=
