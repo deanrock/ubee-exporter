@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-argh = "0.1.12"
-prometheus_exporter = "0.8.5"
-reqwest = {version="0.11.20", features = ["blocking"]}
+argh = "0.1.13"
+prometheus_exporter = { git = "https://github.com/AlexanderThaller/prometheus_exporter", rev = "c49efe614486f998b20eb410ae0caf3e904cf540" }
+reqwest = {version="0.12", features = ["blocking"]}
 scraper = "0.17.1"
